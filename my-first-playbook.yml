@@ -1,0 +1,9 @@
+---
+- name: Get rid of firewalld
+  hosts: all
+  tasks:
+    - name: Stop and disable firewalld
+      service:
+        name: firewalld
+        enabled: no
+        state: stopped

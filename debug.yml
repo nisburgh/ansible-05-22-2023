@@ -1,0 +1,9 @@
+---
+- name: Debug variable information
+  hosts: all
+
+  tasks:
+  - name: Debug hostvars
+    ansible.builtin.debug:
+      var: hostvars
+

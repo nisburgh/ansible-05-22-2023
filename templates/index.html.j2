@@ -1,0 +1,18 @@
+<html>
+<head><title>System Report</title></head>
+<body>
+<h1>{{ inventory_hostname }} ( {{ ansible_host }} )</h1>
+<p><h3>Python details</h3>
+<pre>{{ ansible_facts['python'] | to_nice_yaml }}</pre>
+</p><p><h3>Mount report</h3>
+<ul>
+{% for mount in ansible_facts['mounts'] %}
+<li>Mount {{ mount['mount'] }}</br>
+ - {{ mount['size_total'] / 1048576 }} MiB Total</br>
+ - {{ mount['size_available'] / 1048576 }} MiB free</br>
+</li>
+{% endfor %}
+</ul>
+</p>
+</body>
+</html>

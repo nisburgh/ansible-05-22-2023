@@ -1,0 +1,229 @@
+    1  ansible
+    2  ping in01
+    3  ls -la .ssh
+    4  ssh student@in01
+    5  ssh-copy-id ansible@in01
+    6  ssh ansible@in01
+    7  ssh student@in02
+    8  ssh-copy-id ansible@in02
+    9  ssh ansible@in02 sudo head -1 /etc/shadow
+   10  cat .ssh/authorized_keys 
+   11  cat /etc/ansible/ansible.cfg 
+   12  ls -l /etc/ansible/
+   13  cat /etc/ansible/hosts 
+   14  sudo -i 
+   15  ansible -m ping all
+   16  man ssh-keyscan 
+   17  ansible -m ping all
+   18  ansible -bm ping all
+   19  ansible-doc -l | wc -l
+   20  ansible-doc -l 
+   21  ansible-doc file
+   22  ansible-doc ansible.builtin.file
+   23  ansible-doc shell
+   24  ansible-doc get_url
+   25  ansible-doc -l
+   26  ansible all -m shell -a uptime
+   27  ansible all -m shell -a cmd=uptime
+   28  ansible-doc shell
+   29  ansible all -m shell -a cmd=uptime
+   30  ansible all -m shell -a uptime
+   31  ansible all -m shell -a "chdir=/ cmd=uptime"
+   32  ansible all -m shell -a "chdir=/ cmd=/bin/uptime"
+   33  ansible --help
+   34  ansible all -m shell -a "chdir=/ cmdxfg=/bin/uptime"
+   35  ansible-doc shell
+   36  ansible all -m get_url -a 'url=http://ansible101.training.edgecloud.com/notes.txt dest=/tmp'
+   37  ansible all -m shell -a 'ls -l /tmp/notes.txt'
+   38  ansible all -m shell -a 'tail /tmp/notes.txt'
+   39  systemctl status
+   40  systemctl list-units
+   41  ls
+   42  mkdir ansible
+   43  cd ansible
+   44  ls
+   45  vi my-first-playbook.yml
+   46  ls
+   47  ls -la my-first-playbook.yml
+   48  cat my-first-playbook.yml 
+   49  ansible-playbook my-first-playbook.yml 
+   50  vi my-first-playbook.yml 
+   51  ansible-playbook my-first-playbook.yml 
+   52  systemctl stop rsyslog
+   53  cat my-first-playbook.yml 
+   54  ansible -m shell -a 'whoami'
+   55  ansible -m shell -a 'whoami' all
+   56  ansible -m shell -ba 'whoami' all
+   57  ansible-playbook -b my-first-playbook.yml 
+   58  ansible -m service -a 'name=rsyslog state=started enabled=true' all
+   59  ansible -m service -ba 'name=rsyslog state=started enabled=true' all
+   60  vi my-first-playbook.yml 
+   61  cat my-first-playbook.yml 
+   62  vi my-first-playbook.yml 
+   63  vi ping.yml
+   64  ansible-doc ping
+   65  vi ping.yml
+   66  cat ping.yml 
+   67  ansible-playbook ping.yml 
+   68  cat my-first-playbook.yml 
+   69  cp ping.yml debug.yml
+   70  vi debug.yml
+   71  ansible-playbook debug.yml | less
+   72  vi /etc/ansible/ansible.cfg 
+   73  ansible-playbook debug.yml | less
+   74  ls
+   75  vi webserver.yml
+   76  ansible-doc package
+   77  vi webserver.yml
+   78  ansible-doc  service
+   79  cat webserver.yml 
+   80  vi webserver.yml 
+   81  ansible-doc template
+   82  mkdir templates
+   83  vi templates/index.html.j2
+   84  ansible-doc -m setup in01 | less
+   85  ansible in01 -m setup 
+   86  ansible in01.training.edgecloud.com -m setup 
+   87  vi templates/index.html.j2
+   88  curl in01
+   89  curl in02
+   90  ansible-playbook webserver.yml 
+   91  vi webserver.yml 
+   92  ansible-playbook webserver.yml 
+   93  cp /etc/ansible/ansible.cfg .
+   94  cp /etc/ansible/hosts inventory
+   95  ls
+   96  ansible --version
+   97  rm ansible.cfg 
+   98  ansible --version
+   99  cp /etc/ansible/hosts inventory
+  100  cp /etc/ansible/ansible.cfg .
+  101  ansible --version
+  102  ls -l
+  103  vi ansible.cfg 
+  104  ls
+  105  vi inventory 
+  106  ansible-playbook webserver.yml 
+  107  vi templates/index.html.j2 
+  108  ansible-playbook webserver.yml 
+  109  vi templates/index.html.j2 
+  110  ansible-playbook webserver.yml 
+  111  curl in01
+  112  vi inventory 
+  113  ansible-playbook webserver.yml 
+  114  curl in01
+  115  curl in02
+  116  vi templates/index.html.j2 
+  117  ansible-playbook webserver.yml 
+  118  curl in01
+  119  curl in02
+  120  vi inventory 
+  121  vi templates/index.html.j2 
+  122  vi webserver.yml 
+  123  ansible-playbook webserver.yml --help
+  124  ansible-playbook webserver.yml -t template
+  125  vi templates/index.html.j2 
+  126  ansible-playbook webserver.yml -t template
+  127  ansible -m shell -a 'df -h' all
+  128  ansible -m shell -a 'df -b' all
+  129  man df
+  130  ansible -m shell -a 'df -k' all
+  131  cat templates/index.html.j2 
+  132  ls -l
+  133  ansible-doc -l | fgrep auth
+  134  ansible-doc -l 
+  135  ansible-galaxy collection install ansible.poix
+  136  ansible-galaxy collection install ansible.posix
+  137  ls -la ~/.ansible/
+  138  ls -la ~/.ansible/collections/
+  139  ls -la ~/.ansible/collections/ansible_collections/
+  140  ls -la ~/.ansible/collections/ansible_collections/ansible
+  141  ansible-galaxy collection list
+  142  ls -la /usr/share/ansible/
+  143  ls -la /usr/share/ansible/collections/
+  144  rm -Rf ~/.ansible/collections/ansible_collections/
+  145  ansible-galaxy collection list
+  146  mkdir collections
+  147  ls
+  148  pwd
+  149  ls
+  150  ansible-galaxy collection install ansible.posix -p collections/
+  151  ansible-galaxy collection list
+  152  ls -la collections/
+  153  ls -la collections/ansible_collections/
+  154  ls -la collections/ansible_collections/ansible
+  155  ls -la collections/ansible_collections/ansible/posix/
+  156  ls -la collections/ansible_collections/ansible/posix/plugins/
+  157  ls -la collections/ansible_collections/ansible/posix/plugins/module
+  158  ls -la collections/ansible_collections/ansible/posix/plugins/modules
+  159  ansible-doc -l
+  160  vi ansible.cfg 
+  161  ansible-galaxy collection list
+  162  ansible-doc -l 
+  163  ls
+  164  vi ansible.cfg 
+  165  ls -l collections/
+  166  ls -l collections/ansible_collections/
+  167  ansible-doc -l 
+  168  ansible-doc ansible.posix.authorized_key
+  169  ls collections/ansible_collections/ansible/posix/plugins/modules
+  170  vi ansible.cfg 
+  171  ansible-doc ansible.posix.authorized_key
+  172  ansible-doc -l 
+  173  ansible --version
+  174  vi ansible.cfg 
+  175  ansible --version
+  176  ansible-doc -l 
+  177  ansible-doc ansible.posix.authorized_key
+  178  ls -l
+  179  ls collections/
+  180  pwd
+  181  rm -Rf collections/ansible_collections/
+  182  pwd
+  183  ls collections/
+  184  ansible-doc -l
+  185  ansible-galaxy collection list
+  186  ansible-galaxy collection install ansible.posix -p collections/
+  187  ansible-galaxy collection list
+  188  rm -Rf collections/ansible_collections/
+  189  ls collections/
+  190  ansible-galaxy collection install ansible.posix 
+  191  ls collections/
+  192  ls collections/ansible_collections/
+  193  rm -Rf collections/ansible_collections/
+  194  ls
+  195  vi collections/requirements.yml
+  196  cat collections/requirements.yml
+  197  ls -la collections/
+  198  ansible-galaxy install -r collections/requirements.yml 
+  199  ansible-galaxy collection list
+  200  ls -la collections/
+  201  ls -la collections/ansible_collections/
+  202  ls -la collections/ansible_collections/ansible
+  203  ansible-doc -l 
+  204  ansible-galaxy collection list
+  205  ls -la collections/
+  206  echo ansible_collections > collections/.gitignore
+  207  ls -la collections/
+  208  cat collections/.gitignore 
+  209  ls collections/ansible_collections/
+  210  ls
+  211  ls -la collections/
+  212  cat collections/.gitignore 
+  213  cat collections/requirements.yml 
+  214  ls collections/
+  215  ls collections/ansible_collections/
+  216  ls .
+  217  ansible -m ansible.posix.authorized_key -a 'name=test' all
+  218  ls collections/ansible_collections/ansible/posix/plugins/modules
+  219  ls collections/ansible_collections/ansible/posix/plugins/
+  220  ls collections/ansible_collections/ansible/posix/plugins/action/
+  221  ansible-doc ansible.posix.patch
+  222  ansible-doc --help
+  223  ls collections/ansible_collections/ansible/posix/plugins/
+  224  ansible-doc -t callback -l
+  225  ls collections/ansible_collections/
+  226  vi collections/ansible_collections/ansible/posix/plugins/modules/authorized_key.py 
+  227  ls
+  228  history 
+  229  history > history.student.txt
